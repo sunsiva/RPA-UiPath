@@ -1,0 +1,421 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="mainURLSub" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:GenericValue" Name="getTextWeb" />
+      <Variable x:TypeArguments="x:String" Default="https://www.bluegreenowner.com/home" Name="mainURL" />
+      <Variable x:TypeArguments="sd:DataTable" Name="bGOInput" />
+      <Variable x:TypeArguments="x:String" Name="eachURL" />
+    </Sequence.Variables>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="BGOInput.xlsx">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_20">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[bGOInput]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="B1" SheetName="BG-Home" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="[mainURL]">
+      <ui:OpenBrowser.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+            <Sequence DisplayName="Browser" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="s:String[]" Name="textArray" />
+                <Variable x:TypeArguments="sd:DataTable" Name="extractDataTable" />
+                <Variable x:TypeArguments="x:String" Name="getErrorCount" />
+                <Variable x:TypeArguments="s:DateTime" Name="ProcStartTime" />
+                <Variable x:TypeArguments="s:DateTime" Name="ProcEndTime" />
+              </Sequence.Variables>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="sd:DataTable">[extractDataTable]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="sd:DataTable">[new DataTable]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:AddDataColumn x:TypeArguments="x:String" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Page URL" DataTable="[extractDataTable]" DisplayName="Add Data Column" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" MaxLength="100" Unique="False" />
+              <ui:AddDataColumn x:TypeArguments="x:String" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Error Count" DataTable="[extractDataTable]" DisplayName="Add Data Column" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" MaxLength="100" Unique="False" />
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="s:DateTime">[ProcStartTime]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="s:DateTime">[DateAndTime.Now]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[bGOInput]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                <ui:ForEachRow.Body>
+                  <ActivityAction x:TypeArguments="sd:DataRow">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_24">
+                      <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[eachURL]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[row(0).ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[eachURL]" />
+                        <Delay Duration="[TimeSpan.FromSeconds(5)]" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="500" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_RIGHT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="COMPLETE">
+                              <ui:Target.ClippingRegion>
+                                <ui:Region Rectangle="25, 250, -25, -250" />
+                              </ui:Target.ClippingRegion>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="w" KeyModifiers="None" SendWindowMessages="False" SpecialKey="False">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_5" Key="f6" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="500" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_6" Key="f11" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="500" DisplayName="Type Into" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="False" SimulateType="False" Text="[&quot;[k(tab)]&quot;&quot;[k(tab)]&quot;&quot;[k(tab)]&quot;&quot;[k(tab)]&quot;&quot;[k(tab)]&quot;&quot;[k(down)]&quot;]">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                          </ui:TypeInto.Target>
+                        </ui:TypeInto>
+                        <ui:GetOCRText WordsInfo="{x:Null}" ContinueOnError="True" DisplayName="Get OCR Text 'IFRAME  wave_sidebar_co...'" sap2010:WorkflowViewState.IdRef="GetOCRText_2">
+                          <ui:GetOCRText.OCREngine>
+                            <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                              <ActivityFunc.Argument>
+                                <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+                              </ActivityFunc.Argument>
+                              <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" ExtractWords="False" sap2010:WorkflowViewState.IdRef="GoogleOCR_2" Image="[Image]" Invert="False" Language="eng" Profile="Screen" Scale="2" />
+                            </ActivityFunc>
+                          </ui:GetOCRText.OCREngine>
+                          <ui:GetOCRText.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2ca955bc7d5bb32a0030ec140023f481" Selector="&lt;webctrl id='wave_sidebar_container' tag='IFRAME' /&gt;" WaitForReady="COMPLETE" />
+                          </ui:GetOCRText.Target>
+                          <ui:GetOCRText.Text>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[getTextWeb]</OutArgument>
+                          </ui:GetOCRText.Text>
+                        </ui:GetOCRText>
+                        <If Condition="[getTextWeb.Contains(&quot;WAVE has&quot;)]" sap2010:WorkflowViewState.IdRef="If_2">
+                          <If.Then>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_28">
+                              <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="300" DisplayName="Type Into" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_6" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)][k(down)]">
+                                <ui:TypeInto.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                                </ui:TypeInto.Target>
+                              </ui:TypeInto>
+                              <ui:GetOCRText WordsInfo="{x:Null}" ContinueOnError="True" DisplayName="Get OCR Text 'IFRAME  wave_sidebar_co...'" sap2010:WorkflowViewState.IdRef="GetOCRText_3">
+                                <ui:GetOCRText.OCREngine>
+                                  <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                                    <ActivityFunc.Argument>
+                                      <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+                                    </ActivityFunc.Argument>
+                                    <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" ExtractWords="False" sap2010:WorkflowViewState.IdRef="GoogleOCR_3" Image="[Image]" Invert="False" Language="eng" Profile="Screen" Scale="2" />
+                                  </ActivityFunc>
+                                </ui:GetOCRText.OCREngine>
+                                <ui:GetOCRText.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2ca955bc7d5bb32a0030ec140023f481" Selector="&lt;webctrl id='wave_sidebar_container' tag='IFRAME' /&gt;" WaitForReady="COMPLETE" />
+                                </ui:GetOCRText.Target>
+                                <ui:GetOCRText.Text>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[getTextWeb]</OutArgument>
+                                </ui:GetOCRText.Text>
+                              </ui:GetOCRText>
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">[textArray]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">[getTextWeb.Split({System.Environment.NewLine}, StringSplitOptions.none)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="500" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_8" Key="f11" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                      </Sequence>
+                      <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[textArray]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                              <If Condition="[item.ToString.Contains(&quot;Error&quot;)]" sap2010:WorkflowViewState.IdRef="If_1">
+                                <If.Then>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[getErrorCount]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[item.ToString.Remove(0,2).Replace("I ","").Replace("Errors (","").Replace(")","")]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{eachURL,getErrorCount}]" DataTable="[extractDataTable]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                      <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="BGOOutput.csv" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEachRow.Body>
+              </ui:ForEachRow>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="s:DateTime">[ProcEndTime]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="s:DateTime">[DateAndTime.Now]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:CommentOut DisplayName="Comment Out">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities">
+                    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi,&quot;+Environment.NewLine +&quot;Your request has been done and PFA. The process complete in &quot;+ProcEndTime.ToShortTimeString +&quot; mins.&quot;+ Environment.NewLine +&quot;- Myla&quot;]" DisplayName="send SMTP Mail Message" Email="sivaprakasam.sundaram@cai.io" EnableSSL="True" From="sivaprakasam.sundaram@cai.io" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="siva" Password="HappyNewYear2019" Port="587" SecureConnection="Auto" Server="smtp.office365.com" Subject="BGO - ADA Compliance Results" To="sivaprakasam.sundaram@cai.io">
+                      <ui:SendMail.Files>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">D:\CAI\Projects\RPA\UiPath\BGO\BGOMain\BGOOutput.csv</InArgument>
+                        </scg:List>
+                      </ui:SendMail.Files>
+                    </ui:SendMail>
+                    <sap2010:WorkflowViewState.IdRef>Sequence_29</sap2010:WorkflowViewState.IdRef>
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap2010:WorkflowViewState.IdRef>CommentOut_1</sap2010:WorkflowViewState.IdRef>
+              </ui:CommentOut>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:OpenBrowser.Body>
+    </ui:OpenBrowser>
+    <sads:DebugSymbol.Symbol>dzNEOlxDQUlcUHJvamVjdHNcUlBBXFVpUGF0aFxCR09cQkdPTWFpblxCR09NYWluLnhhbWxhTAOwAg4CAQFPNE9ZAgECUwVeIAIBcV8FrgIWAgEDU6ABU68BAgF4WQtbFgIBcl+/AV/KAQIBb2ULqwIWAgEEWg1atgECAXNmDWaFAQIBbmcNqgIYAgEFWjxaSAIBdlqbAVqfAQIBdVqqAVqzAQIBdG8PdhgCAWp3D3e3AgIBZngPeLoCAgFieQ+AARgCAV6BAQ+SAh8CAQuTAg+aAhgCAQebAg+pAh8CAQZ0PnRNAgFtcT9xUQIBa3eaAXekAQIBaXevAXfDAQIBZ3iaAXinAQIBZXiyAXjGAQIBY348fk0CAWF7PXtMAgFfgQFAgQFMAgFchwEVjwIgAgEMmAI8mAJNAgEKlQI9lQJKAgEIiAEX8gEiAgEl8wEXjAIkAgEXjQIXjQLJAQIBEY4CF44C5QECAQ2JARmQASICAViRARmRAZYBAgFVkgEZkgFxAgFTkwEZpQEkAgFRpgEZqgEpAgFPqwEZrwEpAgFNsAEZtAEpAgFKtQEZuQEnAgFHugEZyQEpAgE9ygEZ5AEeAgEt5QEZ7AEiAgEp7QEZ8QEpAgEm8wGiAfMBrwECASP5AR2JAigCARiNAmiNAnwCARWNAkKNAl0CARKOAliOAmwCAQ+OAqIBjgKxAQIBDo4BRI4BVQIBW4sBRYsBTgIBWZEBiAGRAZMBAgFWkgEpkgFEAgFUkwFbkwFgAgFSpgH4AaYB+wECAVCrAfgBqwH8AQIBTrABjQGwAZIBAgFMsAHzAbAB+AECAUu1AZ4CtQGbAwIBSbUBiwG1AZABAgFIxAGsAcQB6AECAUa6AU26AVMCAUXHAUzHAVgCAUPAAR/AAYwCAgE+ygEnygFUAgEuzAEd4gEoAgEv6gFG6gGPAQIBLOcBR+cBUgIBKu0BjQHtAZIBAgEo7QHzAe0B+AECASf6AR+IAiQCARnAAYYCwAGJAgIBQsABxwHAAdABAgFAwAHpAcAB7gECAT/NAR/RAS0CATrSAR/hAS8CATD6AS36AVoCARr8ASOGAi4CARzNAaQCzQG4AgIBPM0BkQHNAZYBAgE73AGyAdwB7gECATnSAVPSAVkCATjfAVLfAV4CATbYASXYAZICAgEx/QElhAIuAgEehQIlhQJbAgEd2AGMAtgBjwICATXYAc0B2AHWAQIBM9gB7wHYAfQBAgEyggJQggKjAQIBIf8BUf8BYAIBHw==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="ExcelReadRange_1" sap:VirtualizedContainerService.HintSize="314,58.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="336,182.666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="596.666666666667,291.333333333333" />
+      <sap2010:ViewStateData Id="MaximizeWindow_1" sap:VirtualizedContainerService.HintSize="560.666666666667,22" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="538.666666666667,62" />
+      <sap2010:ViewStateData Id="AddDataColumn`1_3" sap:VirtualizedContainerService.HintSize="538.666666666667,22" />
+      <sap2010:ViewStateData Id="AddDataColumn`1_4" sap:VirtualizedContainerService.HintSize="538.666666666667,22" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="538.666666666667,62" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="NavigateTo_1" sap:VirtualizedContainerService.HintSize="464,58.6666666666667" />
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="464,68" />
+      <sap2010:ViewStateData Id="SendHotkey_3" sap:VirtualizedContainerService.HintSize="464,117.333333333333" />
+      <sap2010:ViewStateData Id="SendHotkey_5" sap:VirtualizedContainerService.HintSize="464,117.333333333333" />
+      <sap2010:ViewStateData Id="SendHotkey_6" sap:VirtualizedContainerService.HintSize="464,117.333333333333" />
+      <sap2010:ViewStateData Id="TypeInto_3" sap:VirtualizedContainerService.HintSize="464,96" />
+      <sap2010:ViewStateData Id="GoogleOCR_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetOCRText_2" sap:VirtualizedContainerService.HintSize="464,168" />
+      <sap2010:ViewStateData Id="TypeInto_6" sap:VirtualizedContainerService.HintSize="314,96" />
+      <sap2010:ViewStateData Id="GoogleOCR_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetOCRText_3" sap:VirtualizedContainerService.HintSize="314,168" />
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="336,428">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,578.666666666667" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="SendHotkey_8" sap:VirtualizedContainerService.HintSize="464,117.333333333333" />
+      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="486,2148.66666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,402" />
+      <sap2010:ViewStateData Id="Sequence_17" sap:VirtualizedContainerService.HintSize="486,526">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="486,52.6666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="486,22" />
+      <sap2010:ViewStateData Id="WriteCsvFile_2" sap:VirtualizedContainerService.HintSize="486,86.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="508,2554">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="538.666666666667,2703.33333333333" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="538.666666666667,62" />
+      <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="314,149.333333333333" />
+      <sap2010:ViewStateData Id="Sequence_29" sap:VirtualizedContainerService.HintSize="336,273.333333333333">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="538.666666666667,352" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="560.666666666667,3649.33333333333">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="582.666666666667,3835.33333333333">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="596.666666666667,3934" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="618.666666666667,4389.33333333333">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="658.666666666667,4469.33333333333" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

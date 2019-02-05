@@ -1,0 +1,474 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="NaukriPoc" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="NaukriPoc_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Web.Mail</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="NaukriPoc" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="AngularJS" Name="SearchText" />
+      <Variable x:TypeArguments="x:String" Default="Bengaluru" Name="LocationText" />
+      <Variable x:TypeArguments="x:String" Default="15 Days" Name="NoticePeriodText" />
+      <Variable x:TypeArguments="s:String[]" Name="SubjectStrLst" />
+      <Variable x:TypeArguments="x:String" Name="YearsOfExp" />
+      <Variable x:TypeArguments="x:String" Name="Skillset" />
+      <Variable x:TypeArguments="x:String" Name="CurrentCompany" />
+      <Variable x:TypeArguments="x:String" Name="CCTC" />
+      <Variable x:TypeArguments="x:String" Default="sivaprakasam.sundaram@cai.io" Name="GetEmailId" />
+      <Variable x:TypeArguments="x:String" Default="Password1" Name="GetPwd" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="MailMsgSubject" />
+      <Variable x:TypeArguments="x:String" Name="FromMailId" />
+      <Variable x:TypeArguments="ui:Browser" Name="mainBrowser" />
+      <Variable x:TypeArguments="x:String" Default="https://resdex.naukri.com/v2/search/advSearch" Name="mainUrl" />
+      <Variable x:TypeArguments="x:String" Name="windowTitle" />
+      <Variable x:TypeArguments="sd:DataTable" Name="SearchCriteriaDt" />
+    </Sequence.Variables>
+    <ui:GetIMAPMailMessages TimeoutMS="{x:Null}" DeleteMessages="False" DisplayName="Get IMAP Mail Messages" Email="[GetEmailId]" EnableSSL="True" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[MailMsgSubject]" OnlyUnreadMessages="True" Password="[GetPwd]" Port="993" SecureConnection="Auto" Server="Outlook.office365.com" Top="1" />
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[MailMsgSubject]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="snm:MailMessage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[SearchText]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[item.Subject.Split(CChar("-"))(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[LocationText]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[item.Subject.Split(CChar("-"))(1).ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[NoticePeriodText]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[item.Subject.Split(CChar("-"))(2).ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[FromMailId]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[item.From.ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:OpenBrowser BrowserType="Firefox" DisplayName="Open Browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" UiBrowser="[mainBrowser]" Url="[mainUrl]">
+      <ui:OpenBrowser.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <Delay Duration="00:00:03" sap2010:WorkflowViewState.IdRef="Delay_3" />
+            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="title" DisplayName="Get Attribute" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+              <ui:GetAttribute.Result>
+                <OutArgument x:TypeArguments="x:String">[windowTitle]</OutArgument>
+              </ui:GetAttribute.Result>
+              <ui:GetAttribute.Target>
+                <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[mainBrowser]" WaitForReady="INTERACTIVE" />
+              </ui:GetAttribute.Target>
+            </ui:GetAttribute>
+            <If Condition="[windowTitle.Contains(&quot;Search&quot;)]" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  hireLyrLink'" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="eb9ee46da0ef43000962af08ce525863" Selector="&lt;webctrl id='hireLyrLink' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+                  </ui:Click.Target>
+                </ui:Click>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Default="nishtha_sinha@compaid.co.in" Name="LoginUserId" />
+                      <Variable x:TypeArguments="x:String" Default="Cai@4321" Name="LoginPwd" />
+                    </Sequence.Variables>
+                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'LI'" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2933b6ad98cc9aad0ed2c2908262275f" Selector="&lt;webctrl idx='2' parentid='toggleForm' tag='LI' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  loginEmail'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_11" SendWindowMessages="False" SimulateType="False" Text="[LoginUserId]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2dc8289e077809c9325e428380f677e2" Selector="&lt;webctrl id='loginEmail' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  password'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="False" Text="[LoginPwd]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="13ab44ab95bd437ee1763508a70cc1dc" Selector="&lt;webctrl id='password' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="2500" DisplayName="Click 'BUTTON  loginBtn'" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6c13a5ff651f0150a7141f634827a5f0" Selector="&lt;webctrl id='loginBtn' tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                  </Sequence>
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7cb3601c4f69062b041ff471e96dcce0" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl parentid='quotaltCover' tag='BUTTON' type='button' /&gt;" TimeoutMS="500" WaitForReady="INTERACTIVE" />
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  hireLyrLink'" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="eb9ee46da0ef43000962af08ce525863" Selector="&lt;webctrl id='hireLyrLink' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+                    </ui:Click.Target>
+                  </ui:Click>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  Sug_hireFor'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_8" SendWindowMessages="False" SimulateType="False" Text="[SearchText]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b2efb0b84ea068d698bf08c3772f6e4e" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl id='Sug_hireFor' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  currentLoc'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_9" SendWindowMessages="False" SimulateType="False" Text="[LocationText]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9d2401cee65010817d2bfa1d3fc56d59" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl id='currentLoc' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'P'" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6f58054fd8f858922fa9d53ecf41c51d" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl idx='2' parentid='locSec' tag='P' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'INPUT  currentLoc'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="tab" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="33f25ccfe23ce728c89e6400fa606032" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl id='currentLoc' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:void(0)'" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="15b3d0114cb2520bf9fbc8a2a0052bce" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl aaname='  Employment Details  ' parentid='searchAccordion' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  clearNoticePeriod'" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7856c1bb35fcba29a54c5e423b1659ff" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl id='clearNoticePeriod' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  noticeP'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="False" Text="[NoticePeriodText]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e89a31a9d31614547a8838866e2da7ba" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl id='noticeP' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:;'" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="29bca7afa0831c5c8a8e1f997513664b" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl parentid='ul_noticeDD' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'UL'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="pgdn" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e9f493e8176c79cced0fc1b4527a5ad9" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl parentid='noticeDD' tag='UL' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f66aee801d22c9ae1066d40fd1ccada5" Selector="&lt;html app='firefox.exe' title='Resdex - Advance Search' /&gt;&lt;webctrl name='ADV_SRCH' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
+          </Sequence>
+        </ActivityAction>
+      </ui:OpenBrowser.Body>
+    </ui:OpenBrowser>
+    <Sequence DisplayName="Data Scraping" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+      </Sequence.Variables>
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Firefox" DisplayName="Attach Browser 'Resdex Se Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="8dbe19c5f9d709f70ba32e7f82e24c1e" Selector="&lt;html app='firefox.exe' title='Resdex - Search Result Page' /&gt;">
+        <ui:BrowserScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <ui:ExtractData ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  firstTupCont'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' class='tuple'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;/row&gt;&lt;column exact='1' name='Name' attr='text'&gt;&lt;webctrl tag='div' class='tuple'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='clFx' idx='1'/&gt;&lt;webctrl tag='a' class='userName name' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Experience' attr='text'&gt;&lt;webctrl tag='div' class='tuple'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='mtxt' idx='1'/&gt;&lt;webctrl tag='span' class='exp' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='CurrentCompany' attr='text'&gt;&lt;webctrl tag='div' class='tuple'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='desc currInfo' text='at' idx='1'/&gt;&lt;webctrl tag='a'/&gt;&lt;/column&gt;&lt;column exact='1' name='Skills' attr='text'&gt;&lt;webctrl tag='div' class='tuple'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='desc prefSkill hKwd kSklsInfo' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="50" NextLinkSelector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;form&amp;gt;button' name='pageNo' tag='BUTTON' /&gt;">
+                <ui:ExtractData.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8dd4decc233f77f488db23588d95e178" Selector="&lt;webctrl id='firstTupCont' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
+                </ui:ExtractData.Target>
+              </ui:ExtractData>
+            </Sequence>
+          </ActivityAction>
+        </ui:BrowserScope.Body>
+      </ui:BrowserScope>
+      <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="D:\source\RPA\UiPath\DataScrap\NaukriExtract.csv" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
+    </Sequence>
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="PFA" DisplayName="Send SMTP Mail Message" Email="technosunsiva@gmail.com" EnableSSL="True" From="technosunsiva@gmail.com" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="siva" Password="Indian@2" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Profiles for  - &quot;+SearchText]" To="[FromMailId]">
+      <ui:SendMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+          <InArgument x:TypeArguments="x:String">D:\source\RPA\UiPath\DataScrap\NaukriExtract.csv</InArgument>
+        </scg:List>
+      </ui:SendMail.Files>
+    </ui:SendMail>
+    <sads:DebugSymbol.Symbol>dz5EOlxzb3VyY2VcUlBBXFVpUGF0aFxEYXRhU2NyYXBcRGF0YVNjcmFwXE5hdWtyaVBvYyAtIENvcHkueGFtbHRFA/0CDgIBAUc0Rz8CAQdINEg/AgEGSTRJPQIBBU80T1ICAQRQNFA/AgEDVDRUYwIBAlgFWIgDAwGEAVkFgwESAgFshAEF3gIWAgEn3wIF9AIQAgEV9QIF+wITAgEIWIIDWIUDAwGOAVh0WIIBAwGMAVjBAljGAgMBiwFY+wFYjQIDAYkBWOYCWP0CAwGIAVixAli7AgMBhgFY1wFY3gEDAYUBWZcBWakBAwGCAV8LgAEWAgFthAGxAYQBwAECAWqEAcUBhAHQAQIBaIoBC9sCFgIBKOECOuECVwIBFuMCB/ICGQIBG/MCB/MC+AECARf1Aq0D9QK7AwIBE/gCMvgCYgIBEvUCYPUCZQIBEfUC/gL1AqkDAgEP9QLBAfUC2gECAQ71ApEB9QKqAQIBDfUCwAL1AsUCAgEM9QLlAvUC9QICAQv1ArAC9QK6AgIBCvUCoAL1AqYCAgEJYA1nFgIBfWgNbxYCAXhwDXcWAgFzeA1/FgIBbosBDYsBVAIBZowBDZMBHwIBYJQBDfYBEgIBRfcBDfsBGwIBQfwBDYACGwIBPYECDY8CGAIBO5ACDZQCHQIBOJUCDaMCGAIBNqQCDbICGAIBNLMCDbcCGwIBMLgCDcYCGAIBLscCDcsCHQIBK8wCDdoCGAIBKeMCowLjAukCAgEm6QIN7wIYAgEc8wJI8wJcAgEZ8wKSAfMCxAECARhlOGVbAwGAAWI5YkUCAX5tOG1kAgF7ajlqRwIBeXU4dWQCAXZyOXJLAgF0fTh9TAIBcXo5ekUCAW+LAR2LAScCAWeMAUOMAUoCAWOOATmOAUYCAWGRAWeRAXYCAWSUARuUAUcCAUaWARGkARwCAV6nARH0ARwCAUj5AaAB+QGQAgIBRPcBqwL3AbkCAgFC/gGgAf4BjwICAUD8AaoC/AG6AgIBPo0CoAGNApUCAgE8kgKgAZICjwICATqQAoACkAKFAgIBOaECoAGhArYCAgE3sAKgAbACkgICATW1AqABtQKMAgIBM7MCqQKzAr0CAgExxAKgAcQCkgICAS/JAqAByQKQAgIBLccC8QHHAvcBAgEs2AKgAdgCjwICASrqAg/uAiACAR2iAaQBogHQAQIBX6gBE9UBHgIBTtYBE+QBHgIBS+UBE/MBHgIBSeoC9w7qAvsOAgEl7AKiAewC0QECASTqAmnqAm4CASPqAi/qAjUCASLqAkDqAlQCASDqAo0P6gL0DwIBH+oCuQHqArMOAgEeqgFEqgFhAgFQqwFEqwFOAgFPrQEVuwEgAgFcvAEVwAEjAgFYwQEVxQEjAgFUxgEV1AEgAgFR4gGRAeIBlwICAU3iAaIC4gGnAgIBTPEBpgHxAdIBAgFKuQGoAbkB4gECAV2+AagBvgHXAQIBW7wBtAK8AcMCAgFZwwGoAcMB1QECAVfBAbICwQG+AgIBVdIBqAHSAdYBAgFTxgFXxgFdAgFS</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetIMAPMailMessages_1" sap:VirtualizedContainerService.HintSize="711,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="264,484">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="711,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delay_3" sap:VirtualizedContainerService.HintSize="675,22" />
+      <sap2010:ViewStateData Id="GetAttribute_1" sap:VirtualizedContainerService.HintSize="675,96" />
+      <sap2010:ViewStateData Id="Click_20" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Click_17" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="TypeInto_11" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_16" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="314,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Click_19" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Click_18" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="336,467">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="675,614" />
+      <sap2010:ViewStateData Id="TypeInto_8" sap:VirtualizedContainerService.HintSize="675,134" />
+      <sap2010:ViewStateData Id="TypeInto_9" sap:VirtualizedContainerService.HintSize="675,134" />
+      <sap2010:ViewStateData Id="Click_11" sap:VirtualizedContainerService.HintSize="675,106" />
+      <sap2010:ViewStateData Id="SendHotkey_1" sap:VirtualizedContainerService.HintSize="675,154" />
+      <sap2010:ViewStateData Id="Click_12" sap:VirtualizedContainerService.HintSize="675,106" />
+      <sap2010:ViewStateData Id="Click_13" sap:VirtualizedContainerService.HintSize="675,106" />
+      <sap2010:ViewStateData Id="TypeInto_10" sap:VirtualizedContainerService.HintSize="675,134" />
+      <sap2010:ViewStateData Id="Click_15" sap:VirtualizedContainerService.HintSize="675,106" />
+      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="675,154" />
+      <sap2010:ViewStateData Id="Click_14" sap:VirtualizedContainerService.HintSize="675,106" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="697,2576">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="711,2675" />
+      <sap2010:ViewStateData Id="ExtractData_1" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,230">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BrowserScope_3" sap:VirtualizedContainerService.HintSize="414,376" />
+      <sap2010:ViewStateData Id="WriteCsvFile_1" sap:VirtualizedContainerService.HintSize="414,87" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="711,627">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="711,145" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="733,3804">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="NaukriPoc_1" sap:VirtualizedContainerService.HintSize="773,3884" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

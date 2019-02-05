@@ -1,0 +1,18 @@
+@ web accessibility evaluation tool
+No Styles Contrast
+Details 4 -
+U Filter: Full V
+I" Errors (19)
+l’ 2 x Missing alternative text 6
+l’ 2 x Missing form label 6
+9
+V 1 X Document language missing
+l’ 1 x Empty button 6
+V 7 X Empty link 6
+V 6 X Broken ARIA reference 6
+V Alerts (15)
+l’ 1 x Orphaned form label 6
+V 1 X No heading structure 6
+V 1 X Broken same»page link 6
+V 1 X Suspicious link text 6 v
+chl'ome-extenslon://ibbo|npkimmeebipiifedlchllz

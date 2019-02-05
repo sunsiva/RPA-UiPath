@@ -1,0 +1,147 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="MySequence" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="MySequence_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="MySequence" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mailmessage" />
+    </Sequence.Variables>
+    <ui:GetIMAPMailMessages TimeoutMS="{x:Null}" DeleteMessages="False" DisplayName="Get IMAP Mail Messages" Email="technosunsiva@gmail.com" EnableSSL="True" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[mailmessage]" OnlyUnreadMessages="True" Password="Indian@2" Port="993" SecureConnection="Auto" Server="imap.gmail.com" Top="30" />
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[mailmessage]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Data Scraping" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+              </Sequence.Variables>
+              <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Firefox" DisplayName="Attach Browser 'MiMobiles Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="20d84745047c16bfee71ab1f734ce0f6" Selector="&lt;html app='firefox.exe' title='Mi Mobiles - Buy Products Online at Best Price in India - All Ca*' /&gt;">
+                <ui:BrowserScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  container'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='t-0M7P _2doH3V' idx='1'/&gt;&lt;webctrl tag='div' class='_3e7xtJ' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='_1HmYoV hCUpcT' idx='1'/&gt;&lt;webctrl tag='div' class='_1HmYoV _35HD7C col-10-12' idx='1'/&gt;&lt;webctrl tag='div' class='bhgxx2 col-12-12'/&gt;&lt;webctrl tag='div' class='_3O0U0u' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='_1UoZlX' idx='1'/&gt;&lt;webctrl tag='a' class='_31qSD5' idx='1'/&gt;&lt;webctrl tag='div' class='_1-2Iqu row' idx='1'/&gt;&lt;/row&gt;&lt;column exact='1' name='Mobile' attr='text'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='t-0M7P _2doH3V' idx='1'/&gt;&lt;webctrl tag='div' class='_3e7xtJ' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='_1HmYoV hCUpcT' idx='1'/&gt;&lt;webctrl tag='div' class='_1HmYoV _35HD7C col-10-12' idx='1'/&gt;&lt;webctrl tag='div' class='bhgxx2 col-12-12'/&gt;&lt;webctrl tag='div' class='_3O0U0u' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='_1UoZlX' idx='1'/&gt;&lt;webctrl tag='a' class='_31qSD5' idx='1'/&gt;&lt;webctrl tag='div' class='_1-2Iqu row' idx='1'/&gt;&lt;webctrl tag='div' class='col col-7-12' idx='1'/&gt;&lt;webctrl tag='div' class='_3wU53n' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Price' attr='text'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='t-0M7P _2doH3V' idx='1'/&gt;&lt;webctrl tag='div' class='_3e7xtJ' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='_1HmYoV hCUpcT' idx='1'/&gt;&lt;webctrl tag='div' class='_1HmYoV _35HD7C col-10-12' idx='1'/&gt;&lt;webctrl tag='div' class='bhgxx2 col-12-12'/&gt;&lt;webctrl tag='div' class='_3O0U0u' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='_1UoZlX' idx='1'/&gt;&lt;webctrl tag='a' class='_31qSD5' idx='1'/&gt;&lt;webctrl tag='div' class='_1-2Iqu row' idx='1'/&gt;&lt;webctrl tag='div' class='col col-5-12 _2o7WAb' idx='1'/&gt;&lt;webctrl tag='div' class='_6BWGkk' idx='1'/&gt;&lt;webctrl tag='div' class='_1uv9Cb' idx='1'/&gt;&lt;webctrl tag='div' class='_1vC4OE _2rQ-NK' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="100">
+                        <ui:ExtractData.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="97b3d9d3a8def5d63fe8579c98318525" Selector="&lt;webctrl id='container' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
+                        </ui:ExtractData.Target>
+                      </ui:ExtractData>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:BrowserScope.Body>
+              </ui:BrowserScope>
+              <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="D:\source\RPA\DataScrap\DataScrap.csv" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2" />
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="PFA" DisplayName="Send SMTP Mail Message" Email="technosunsiva@gmail.com" EnableSSL="True" From="technosunsiva@gmail.com" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="siva" Password="Indian@2" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Search Results" To="technosunsiva@gmail.com">
+      <ui:SendMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </ui:SendMail.Files>
+    </ui:SendMail>
+    <sads:DebugSymbol.Symbol>dzhEOlxzb3VyY2VcUlBBXFVpUGF0aFxEYXRhU2NyYXBcRGF0YVNjcmFwXE15U2VxdWVuY2UueGFtbCU/A2sOAgEBQwVDigMCASFEBWQSAgEMZQVpEwIBAkODA0OHAwIBKUN0Q40BAgEoQ8kCQ84CAgEnQ4YCQ5UCAgElQ+4CQ/4CAgEkQ7kCQ8MCAgEjQ+IBQ+kBAgEiRJABRJ8BAgEfSgthFgIBDWWSA2WrAwIBC2VgZWUCAQpl/gJljgMCAQllwQFl2gECAQhlkQFlqgECAQdlwAJlxQICAQZl5QJl9QICAQVlsAJlugICAQRloAJlpgICAQNLDWAYAgEOTUJNXwIBD08PXiECARRfD1/1AQIBEE+rAk+XAwIBHlUVWyACARVfUF9kAgESX5oBX8EBAgERVhdaKAIBFlaIFFaNFAIBHViqAVjWAQIBHFaNAVaSAQIBG1ZTVlkCARpWZFZ4AgEYVtoBVsQTAgEX</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetIMAPMailMessages_1" sap:VirtualizedContainerService.HintSize="474,22" />
+      <sap2010:ViewStateData Id="ExtractData_2" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="336,230">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BrowserScope_2" sap:VirtualizedContainerService.HintSize="414,376" />
+      <sap2010:ViewStateData Id="WriteCsvFile_2" sap:VirtualizedContainerService.HintSize="414,87" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="436,627">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="458,751">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="474,885" />
+      <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="474,145" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="496,1256">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="MySequence_1" sap:VirtualizedContainerService.HintSize="536,1336" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
