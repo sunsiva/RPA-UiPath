@@ -88,7 +88,6 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Windows.Forms</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
@@ -112,39 +111,27 @@
               <Variable x:TypeArguments="x:String" Name="SuggestionExpTxt" />
               <Variable x:TypeArguments="x:String" Name="SuggestionWorkTxt" />
               <Variable x:TypeArguments="x:String" Name="SuggestionPremTxt" />
-              <Variable x:TypeArguments="x:String" Name="variable1" />
+              <Variable x:TypeArguments="x:String" Name="getSalaray" />
             </Sequence.Variables>
             <If Condition="[row.Item(&quot;ORGANIZATION&quot;).ToString=&quot;&quot; or row.Item(&quot;ORGANIZATION&quot;).ToString.Contains(&quot;None&quot;)]" sap2010:WorkflowViewState.IdRef="If_3">
               <If.Then>
                 <Sequence sap2010:WorkflowViewState.IdRef="Sequence_37">
-                  <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_39">
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[row.Item("ORGANIZATION")]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">["Not Working"]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                  </ui:CommentOut>
-                  <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_40">
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[row.Item("POSITION")]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">["Not Working"]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                  </ui:CommentOut>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[row.Item("ORGANIZATION")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">["Not Working"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[row.Item("POSITION")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">["Not Working"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
                   <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[SuggestionWorkTxt]</OutArgument>
@@ -156,20 +143,42 @@
                 </Sequence>
               </If.Then>
             </If>
-            <If Condition="[SalaryRangeTxt &lt;CInt(row.Item(&quot;SALARY&quot;).ToString.Replace(&quot; Lacs&quot;,&quot;&quot;))]">
-              <If.Then>
-                <Assign>
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[SuggestionSalTxt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">Salary Expectation Is Higher Than Your Budget;</InArgument>
-                  </Assign.Value>
-                  <sap2010:WorkflowViewState.IdRef>Assign_21</sap2010:WorkflowViewState.IdRef>
-                </Assign>
-              </If.Then>
-              <sap2010:WorkflowViewState.IdRef>If_6</sap2010:WorkflowViewState.IdRef>
-            </If>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[getSalaray]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[row.Item("SALARY").ToString.Replace(" Lacs","")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[getSalaray]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[If(IsNumeric(getSalaray.Trim),"0",getSalaray)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:CommentOut DisplayName="Comment Out">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities">
+                  <If Condition="[SalaryRangeTxt &lt;CInt(getSalaray)]" sap2010:WorkflowViewState.IdRef="If_6">
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[SuggestionSalTxt]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">Salary Expectation Is Higher Than Your Budget;</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                  <sap2010:WorkflowViewState.IdRef>Sequence_39</sap2010:WorkflowViewState.IdRef>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap2010:WorkflowViewState.IdRef>CommentOut_1</sap2010:WorkflowViewState.IdRef>
+            </ui:CommentOut>
             <If Condition="[row.Item(&quot;CANDIDATE_NAME&quot;).ToString = &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_5">
               <If.Then>
                 <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
@@ -202,61 +211,55 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <sads:DebugSymbol.Symbol>d0NEOlxzb3VyY2VcUlBBXFVpUGF0aFxEYXRhU2NyYXBcRGF0YVNjcmFwXG1hbmlwdWxhdGVFeHRyYWN0RGF0YS54YW1sIl8DzgEOAgEBYAVgsAICASdhBWYUAgEkZwXMARUCAQJgkAFgnQECASpgqAFgvAECAShjNWNeAgEmZS1lLgIBJWc2Z0oCASJtC8kBFgIBA3UNngESAgEZnwENrAESAgETrQENuAESAgENuQENwAEWAgEHwQENyAEWAgEEdRt1oQECARp3EZwBHAIBG58BG58BhQECARShARGpARoCARWtARutAVsCAQ6vARG2ARoCAQ++ATi+AXICAQm7ATm7AVICAQjGATjGAXICAQbDATnDAVECAQV4E4UBIwIBIYYBE5MBIwIBIJQBE5sBHAIBHKYBPKYBagIBGKMBPaMBTwIBFrQBPLQBYgIBErEBPbEBUAIBEJkBPpkBdgIBH5YBP5YBUgIBHQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0lEOlxDQUlcUHJvamVjdHNcUlBBXFVpUGF0aFxEYXRhU2NyYXBcRGF0YVNjcmFwXG1hbmlwdWxhdGVFeHRyYWN0RGF0YS54YW1sKF4D1wEOAgEBXwVfsAICAS5gBWUUAgErZgXVARUCAQJfkAFfnQECATFfqAFfvAECAS9iNWJeAgEtZC1kLgIBLGY2ZkoCASlsC9IBFgIBA3QNkQESAgEckgENmQEWAgEYmgENoQEWAgEUogENtQEdAgETtgENwQESAgENwgENyQEWAgEHygEN0QEWAgEEdBt0oQECAR12EY8BHAIBHpcBOJcBaQIBG5QBOZQBRQIBGZ8BOJ8BZwIBF5wBOZwBRQIBFbYBG7YBWwIBDrgBEb8BGgIBD8cBOMcBcgIBCcQBOcQBUgIBCM8BOM8BcgIBBswBOcwBUQIBBXcTfhwCASZ/E4YBHAIBI4cBE44BHAIBH70BPL0BYgIBEroBPboBUAIBEHw+fE0CASh5P3lZAgEnhAE+hAFNAgElgQE/gQFVAgEkjAE+jAF2AgEiiQE/iQFSAgEg</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="AddDataColumn`1_1" sap:VirtualizedContainerService.HintSize="615,22" />
-      <sap2010:ViewStateData Id="InvokeMethod_1" sap:VirtualizedContainerService.HintSize="615,132" />
-      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="264,184">
+      <sap2010:ViewStateData Id="AddDataColumn`1_1" sap:VirtualizedContainerService.HintSize="555.333333333333,22" />
+      <sap2010:ViewStateData Id="InvokeMethod_1" sap:VirtualizedContainerService.HintSize="555.333333333333,137.333333333333" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="264,390">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,262" />
-      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="264,184">
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="502.666666666667,544" />
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="502.666666666667,62" />
+      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="502.666666666667,62" />
+      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,212.666666666667" />
+      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="486,336.666666666667">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="416,262" />
-      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="416,60" />
-      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="438,788">
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="502.666666666667,415.333333333333" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="502.666666666667,216" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="502.666666666667,62" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="502.666666666667,62" />
+      <sap2010:ViewStateData Id="Sequence_36" sap:VirtualizedContainerService.HintSize="524.666666666667,1787.33333333333">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="563,936" />
-      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="563,208" />
-      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="563,208" />
-      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="563,60" />
-      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="563,60" />
-      <sap2010:ViewStateData Id="Sequence_36" sap:VirtualizedContainerService.HintSize="585,1756">
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="555.333333333333,1940" />
+      <sap2010:ViewStateData Id="Sequence_38" sap:VirtualizedContainerService.HintSize="577.333333333333,2303.33333333333">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="615,1904" />
-      <sap2010:ViewStateData Id="Sequence_38" sap:VirtualizedContainerService.HintSize="637,2262">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="manipulateExtractData_1" sap:VirtualizedContainerService.HintSize="578,1210" />
+      <sap2010:ViewStateData Id="manipulateExtractData_1" sap:VirtualizedContainerService.HintSize="617.333333333333,2383.33333333333" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

@@ -1,16 +1,20 @@
 {
-  "name": "Naukri",
-  "description": "Blank Process",
-  "main": "NaukriMain.xaml",
+  "name": "DataScrap",
+  "description": "DataScrap and send mail",
+  "main": "Main.xaml",
   "dependencies": {
-    "UiPath.UIAutomation.Activities": "[19.1.0]",
-    "UiPath.System.Activities": "[18.4.2]",
-    "UiPath.Excel.Activities": "[2.5.1]",
-    "UiPath.Mail.Activities": "[1.3.0]"
+    "UiPath.UIAutomation.Activities": "[18.3.6877.28298]",
+    "UiPath.System.Activities": "[18.3.6877.28276]",
+    "UiPath.Excel.Activities": "[2.4.6863.30657]",
+    "UiPath.Mail.Activities": "[1.2.6863.29868]",
+    "SQLiteDatabaseForUiPath": "[1.0.0]",
+    "UiPath.Database.Activities": "[1.2.6863.32528]",
+    "Connector.Twitter.Activities": "[1.0.8]",
+    "BalaReva.Externals.Activities": "[4.0.3]"
   },
   "schemaVersion": "3.2",
-  "studioVersion": "19.1.0.0",
-  "projectVersion": "1.0.0",
+  "studioVersion": "18.3.2.0",
+  "projectVersion": "1.0.0.0",
   "runtimeOptions": {
     "autoDispose": false,
     "excludedLoggedData": [
