@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Form1" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="398,770" sap2010:WorkflowViewState.IdRef="Form1_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Form1" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="262,256.666666666667" sap2010:WorkflowViewState.IdRef="Form1_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:be="clr-namespace:BalaReva.Externals;assembly=BalaReva.Externals" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -61,6 +61,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart sap:VirtualizedContainerService.HintSize="1005.33333333333,1181.33333333333" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+      <Flowchart.Variables>
+        <Variable x:TypeArguments="x:String" Name="toEmailId" />
+      </Flowchart.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -134,7 +137,7 @@
                     <x:String x:Key="FalseLabel">Save attachment</x:String>
                     <x:String x:Key="TrueLabel">No Attachment</x:String>
                     <av:PointCollection x:Key="TrueConnector">460.666666666667,320 380,320 380,393.666666666667</av:PointCollection>
-                    <av:PointCollection x:Key="FalseConnector">539.333333333333,320 569.333333333333,320 569.333333333333,520 540,520</av:PointCollection>
+                    <av:PointCollection x:Key="FalseConnector">539.333333333333,320 570,320 570,389</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <FlowDecision.True>
@@ -162,120 +165,81 @@
                   </FlowStep>
                 </FlowDecision.True>
                 <FlowDecision.False>
-                  <FlowStep x:Name="__ReferenceID3">
+                  <FlowStep x:Name="__ReferenceID13">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <av:Point x:Key="ShapeLocation">340,493.666666666667</av:Point>
-                        <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                        <av:PointCollection x:Key="ConnectorLocation">440,546.333333333333 440,593.666666666667</av:PointCollection>
+                        <av:Point x:Key="ShapeLocation">449,389</av:Point>
+                        <av:Size x:Key="ShapeSize">242,62</av:Size>
+                        <av:PointCollection x:Key="ConnectorLocation">570,451 570,520 540,520</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" FolderPath="D:\source\RPA\UiPath\DataScrap\Results" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_2" Message="[mailAttachment(0)]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[toEmailId]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[mailAttachment(0).From.ToString+";"+mailAttachment(0).CC.ToString+";"+mailAttachment(0).To.ToString]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
                     <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID7">
+                      <FlowStep x:Name="__ReferenceID3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <av:Point x:Key="ShapeLocation">340,593.666666666667</av:Point>
+                            <av:Point x:Key="ShapeLocation">340,493.666666666667</av:Point>
                             <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                            <av:PointCollection x:Key="ConnectorLocation">440,646.333333333333 440,686.333333333333</av:PointCollection>
+                            <av:PointCollection x:Key="ConnectorLocation">440,546.333333333333 440,593.666666666667</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, I have receieved your request &amp; will process it. I will revert you with profiles approximately with less than 5 mins.&quot;+Environment.NewLine+&quot; - Myla.&quot;]" DisplayName="Send Ack. Mail" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject +&quot; - Acknowledgement&quot;]" To="[mailAttachment(0).From.ToString]">
-                          <ui:SendOutlookMail.Files>
-                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-                          </ui:SendOutlookMail.Files>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:SendOutlookMail>
+                        <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" FolderPath="D:\source\RPA\UiPath\DataScrap\Results" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_2" Message="[mailAttachment(0)]" />
                         <FlowStep.Next>
-                          <FlowDecision x:Name="__ReferenceID9" Condition="[mailAttachment(0).Subject.Contains(&quot;Search&quot;)]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                          <FlowStep x:Name="__ReferenceID7">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <av:Point x:Key="ShapeLocation">400.666666666667,686.333333333333</av:Point>
-                                <av:Size x:Key="ShapeSize">78.6666666666667,86.6666666666667</av:Size>
-                                <av:PointCollection x:Key="FalseConnector">479.333333333333,729.666666666667 640,729.666666666667 640,910 610,910</av:PointCollection>
-                                <x:String x:Key="FalseLabel">"GetProfiles"</x:String>
-                                <x:String x:Key="TrueLabel">"GetCandidates"</x:String>
-                                <av:PointCollection x:Key="TrueConnector">400.666666666667,729.666666666667 260,729.666666666667 260,893.666666666667</av:PointCollection>
+                                <av:Point x:Key="ShapeLocation">340,593.666666666667</av:Point>
+                                <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+                                <av:PointCollection x:Key="ConnectorLocation">440,646.333333333333 440,686.333333333333</av:PointCollection>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <FlowDecision.True>
-                              <FlowStep x:Name="__ReferenceID10">
+                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, We have receieved your request, its in progress. We will revert you approximately in less than 5 mins.&quot;+Environment.NewLine+&quot; - Myla.&quot;]" DisplayName="Send Ack. Mail" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject +&quot; - Acknowledgement&quot;]" To="[toEmailId]">
+                              <ui:SendOutlookMail.Files>
+                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                              </ui:SendOutlookMail.Files>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:SendOutlookMail>
+                            <FlowStep.Next>
+                              <FlowDecision x:Name="__ReferenceID8" Condition="[mailAttachment(0).Subject.Contains(&quot;Search&quot;)]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <av:Point x:Key="ShapeLocation">160,893.666666666667</av:Point>
-                                    <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                                    <av:PointCollection x:Key="ConnectorLocation">260,946.333333333333 260,993.666666666667</av:PointCollection>
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <av:Point x:Key="ShapeLocation">400.666666666667,686.333333333333</av:Point>
+                                    <av:Size x:Key="ShapeSize">78.6666666666667,86.6666666666667</av:Size>
+                                    <av:PointCollection x:Key="FalseConnector">479.333333333333,729.666666666667 640,729.666666666667 640,910 610,910</av:PointCollection>
+                                    <x:String x:Key="FalseLabel">"GetProfiles"</x:String>
+                                    <x:String x:Key="TrueLabel">"GetCandidates"</x:String>
+                                    <av:PointCollection x:Key="TrueConnector">400.666666666667,729.666666666667 260,729.666666666667 260,893.666666666667</av:PointCollection>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Get Candidates For Criteria" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="NaukriPoc.xaml">
-                                  <ui:InvokeWorkflowFile.Arguments>
-                                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
-                                  </ui:InvokeWorkflowFile.Arguments>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </ui:InvokeWorkflowFile>
-                                <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID11">
+                                <FlowDecision.True>
+                                  <FlowStep x:Name="__ReferenceID9">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <av:Point x:Key="ShapeLocation">160,993.666666666667</av:Point>
+                                        <av:Point x:Key="ShapeLocation">160,893.666666666667</av:Point>
                                         <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                                        <av:PointCollection x:Key="ConnectorLocation">260,1046.33333333333 260,1070.35333333333 50,1070.35333333333 50,140.353333333333 200,140.353333333333</av:PointCollection>
+                                        <av:PointCollection x:Key="ConnectorLocation">260,946.333333333333 260,993.666666666667</av:PointCollection>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, &quot;+ Environment.NewLine +&quot;Please validate the attached candidates and send back to me by marking 'Y' in the action coloumn.&quot;+Environment.NewLine + Environment.NewLine+&quot; -Myla.&quot;+ Environment.NewLine+Environment.NewLine+&quot;-- This email is generated by the Bot.&quot;]" DisplayName="Send Mail With Candidates List" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject]" To="[mailAttachment(0).From.ToString]">
-                                      <ui:SendOutlookMail.Files>
-                                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                                          <InArgument x:TypeArguments="x:String">D:\source\RPA\UiPath\DataScrap\Results\NaukriResults.csv</InArgument>
-                                        </scg:List>
-                                      </ui:SendOutlookMail.Files>
-                                    </ui:SendOutlookMail>
-                                    <FlowStep.Next>
-                                      <x:Reference>__ReferenceID0</x:Reference>
-                                    </FlowStep.Next>
-                                  </FlowStep>
-                                </FlowStep.Next>
-                              </FlowStep>
-                            </FlowDecision.True>
-                            <FlowDecision.False>
-                              <FlowStep x:Name="__ReferenceID4">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <av:Point x:Key="ShapeLocation">410,883.666666666667</av:Point>
-                                    <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                                    <av:PointCollection x:Key="ConnectorLocation">510,936.333333333333 510,993.666666666667</av:PointCollection>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Process The Profile Request" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="NaukriProfileDownload.xaml">
-                                  <ui:InvokeWorkflowFile.Arguments>
-                                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
-                                  </ui:InvokeWorkflowFile.Arguments>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </ui:InvokeWorkflowFile>
-                                <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID8">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <av:Point x:Key="ShapeLocation">410,993.666666666667</av:Point>
-                                        <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                                        <av:PointCollection x:Key="ConnectorLocation">610,1020 875.333333333333,1020 875.333333333333,140.353333333333 400,140.353333333333</av:PointCollection>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Zip and Send" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ZipAndSend.xaml">
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Get Candidates For Criteria" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="NaukriPoc.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
-                                        <InArgument x:TypeArguments="x:String" x:Key="ToMailId">[mailAttachment(0).From.ToString]</InArgument>
+                                        <scg:Dictionary x:TypeArguments="x:String, Argument" />
                                       </ui:InvokeWorkflowFile.Arguments>
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -284,13 +248,85 @@
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:InvokeWorkflowFile>
                                     <FlowStep.Next>
-                                      <x:Reference>__ReferenceID0</x:Reference>
+                                      <FlowStep x:Name="__ReferenceID10">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <av:Point x:Key="ShapeLocation">160,993.666666666667</av:Point>
+                                            <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+                                            <av:PointCollection x:Key="ConnectorLocation">260,1046.33333333333 260,1070.35333333333 50,1070.35333333333 50,140.353333333333 200,140.353333333333</av:PointCollection>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, &quot;+ Environment.NewLine +&quot;Please validate the attached candidates and send it back by marking 'Y' in the action coloumn.&quot;+Environment.NewLine + Environment.NewLine+&quot; -Myla.&quot;+ Environment.NewLine+Environment.NewLine+&quot;-- This email is generated by the Bot.&quot;]" DisplayName="Send Mail With Candidates List" sap:VirtualizedContainerService.HintSize="314,149.333333333333" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject]" To="[toEmailId]">
+                                          <ui:SendOutlookMail.Files>
+                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                              <InArgument x:TypeArguments="x:String">D:\source\RPA\UiPath\DataScrap\Results\NaukriResults.csv</InArgument>
+                                            </scg:List>
+                                          </ui:SendOutlookMail.Files>
+                                        </ui:SendOutlookMail>
+                                        <FlowStep.Next>
+                                          <x:Reference>__ReferenceID0</x:Reference>
+                                        </FlowStep.Next>
+                                      </FlowStep>
                                     </FlowStep.Next>
                                   </FlowStep>
-                                </FlowStep.Next>
-                              </FlowStep>
-                            </FlowDecision.False>
-                          </FlowDecision>
+                                </FlowDecision.True>
+                                <FlowDecision.False>
+                                  <FlowStep x:Name="__ReferenceID4">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <av:Point x:Key="ShapeLocation">410,883.666666666667</av:Point>
+                                        <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+                                        <av:PointCollection x:Key="ConnectorLocation">510,936.333333333333 510,966.333333333333 520,966.333333333333 520,989</av:PointCollection>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Process The Profile Request" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="NaukriProfileDownload.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:InvokeWorkflowFile>
+                                    <FlowStep.Next>
+                                      <FlowStep x:Name="__ReferenceID11">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <av:Point x:Key="ShapeLocation">420,989</av:Point>
+                                            <av:Size x:Key="ShapeSize">200,22</av:Size>
+                                            <av:PointCollection x:Key="ConnectorLocation">520,1011 520,1043.66666666667</av:PointCollection>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <be:ZipFiles MultipleFolders="{x:Null}" Password="{x:Null}" DisplayName="Zip Files" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="ZipFiles_1" SourceFolder="D:\source\RPA\UiPath\DataScrap\Results\C101" ZipFile="D:\source\RPA\UiPath\DataScrap\Results\C101.zip" />
+                                        <FlowStep.Next>
+                                          <FlowStep x:Name="__ReferenceID12">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <av:Point x:Key="ShapeLocation">420,1043.66666666667</av:Point>
+                                                <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+                                                <av:PointCollection x:Key="ConnectorLocation">620,1070 650,1070 650,140.353333333333 400,140.353333333333</av:PointCollection>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, &quot;+ Environment.NewLine +&quot;Your request has been processed. Please find attached profiles for the position you have requested.&quot;+Environment.NewLine + Environment.NewLine+&quot; -Myla.&quot;+ Environment.NewLine+Environment.NewLine+&quot;-- This email is generated by the Bot.&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_5" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject]" To="[toEmailId]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                                  <InArgument x:TypeArguments="x:String">D:\source\RPA\UiPath\DataScrap\Results\C101.zip</InArgument>
+                                                </scg:List>
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <FlowStep.Next>
+                                              <x:Reference>__ReferenceID0</x:Reference>
+                                            </FlowStep.Next>
+                                          </FlowStep>
+                                        </FlowStep.Next>
+                                      </FlowStep>
+                                    </FlowStep.Next>
+                                  </FlowStep>
+                                </FlowDecision.False>
+                              </FlowDecision>
+                            </FlowStep.Next>
+                          </FlowStep>
                         </FlowStep.Next>
                       </FlowStep>
                     </FlowStep.Next>
@@ -312,6 +348,8 @@
       <x:Reference>__ReferenceID9</x:Reference>
       <x:Reference>__ReferenceID10</x:Reference>
       <x:Reference>__ReferenceID11</x:Reference>
+      <x:Reference>__ReferenceID12</x:Reference>
+      <x:Reference>__ReferenceID13</x:Reference>
     </Flowchart>
   </Sequence>
 </Activity>
