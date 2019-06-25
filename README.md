@@ -3,4 +3,4 @@ RPA- UiPath projects
 
 Install UiPath community version to start with.
 
-Create User case for E-commerce website data scrapping:
+Create User Case for E-commerce website data scrapping:
