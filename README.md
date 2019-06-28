@@ -8,4 +8,3 @@ Create Use Case for E-commerce website & do data scrapping and Manipulation:
 2. Update the E-commerce website using URL
 3. Manipulate the data
 4. Login to the system
-5.
