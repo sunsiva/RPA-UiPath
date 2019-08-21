@@ -1,15 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Main_1"
- xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
- xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
- xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
- xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
- xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
- xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
- xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
- xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:swf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
- xmlns:ui="http://schemas.uipath.com/workflow/activities"
- xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="408,425.333333333333" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:swf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -61,53 +50,27 @@
       <AssemblyReference>System.Windows.Forms</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence sap:VirtualizedContainerService.HintSize="368,345.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="isTitleExist" />
       <Variable x:TypeArguments="swf:Form" Name="frmOne" />
       <Variable x:TypeArguments="x:Boolean" Name="isExistTxt1" />
       <Variable x:TypeArguments="x:String" Default="LOGIN" Name="clickTxt" />
     </Sequence.Variables>
-    <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
       <ui:SendHotkey.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
       </ui:SendHotkey.Target>
     </ui:SendHotkey>
-    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="LOGIN">
+    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,96" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="LOGIN">
       <ui:TypeInto.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
       </ui:TypeInto.Target>
     </ui:TypeInto>
-    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'LI'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" Selector="&lt;html app='firefox.exe' title='Employer&amp;apos;s Login: Recruitment Solutions from Naukri.com' /&gt;&lt;webctrl idx='1' parentid='toggleForm' tag='LI' /&gt;" WaitForReady="INTERACTIVE" />
-      </ui:Click.Target>
-    </ui:Click>
-    <sads:DebugSymbol.Symbol>dzhEOlxDQUlcUHJvamVjdHNcUlBBXFVpUGF0aFxEYXRhU2NyYXBcRGF0YVNjcmFwXE1haW4ueGFtbAhAA2EOAgEBRTRFOwIBAkcFSxUCAQdMBVATAgEFUQVfEAIBA0fkAUfnAQIBCEyPAkyWAgIBBl1fXYICAgEE</sads:DebugSymbol.Symbol>
   </Sequence>
-  <sap2010:WorkflowViewState.ViewStateManager>
-    <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="SendHotkey_1" sap:VirtualizedContainerService.HintSize="314,117.333333333333" />
-      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="314,96" />
-      <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="314,68" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,485.333333333333">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="556,576" />
-    </sap2010:ViewStateManager>
-  </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
