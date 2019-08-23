@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>617.333333333333,2622.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>420.666666666667,1541.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>manipulateExtractData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -80,36 +80,35 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.Windows.Forms</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="577.333333333333,2542.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_38">
+  <Sequence sap:VirtualizedContainerService.HintSize="380.666666666667,1461.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_38">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="SUGGESTIONS" DataTable="[ExtractDataTable]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="555.333333333333,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" MaxLength="100" Unique="False" />
-    <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="555.333333333333,137.333333333333" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="SetOrdinal">
+    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="SUGGESTIONS" DataTable="[ExtractDataTable]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="342.666666666667,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" MaxLength="100" Unique="False" />
+    <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="342.666666666667,137.333333333333" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="SetOrdinal">
       <InvokeMethod.TargetObject>
         <InArgument x:TypeArguments="sd:DataColumn">[ExtractDataTable.Columns("SUGGESTIONS")]</InArgument>
       </InvokeMethod.TargetObject>
       <InArgument x:TypeArguments="x:Int32">1</InArgument>
     </InvokeMethod>
-    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="ACTION" DataTable="[ExtractDataTable]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="555.333333333333,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" MaxLength="100" Unique="False" />
-    <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="555.333333333333,137.333333333333" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="SetOrdinal">
+    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="ACTION" DataTable="[ExtractDataTable]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="342.666666666667,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" MaxLength="100" Unique="False" />
+    <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="342.666666666667,137.333333333333" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="SetOrdinal">
       <InvokeMethod.TargetObject>
         <InArgument x:TypeArguments="sd:DataColumn">[ExtractDataTable.Columns("ACTION")]</InArgument>
       </InvokeMethod.TargetObject>
       <InArgument x:TypeArguments="x:Int32">3</InArgument>
     </InvokeMethod>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="555.333333333333,1940" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="342.666666666667,890.666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="524.666666666667,1787.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_36">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="296,738" sap2010:WorkflowViewState.IdRef="Sequence_36">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="SuggestionSalTxt" />
               <Variable x:TypeArguments="x:String" Name="SuggestionExpTxt" />
@@ -122,15 +121,21 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[row.Item(&quot;ORGANIZATION&quot;).ToString=&quot;&quot; or row.Item(&quot;ORGANIZATION&quot;).ToString.Contains(&quot;None&quot;)]" sap:VirtualizedContainerService.HintSize="502.666666666667,544" sap2010:WorkflowViewState.IdRef="If_3">
+            <If Condition="[row.Item(&quot;ORGANIZATION&quot;).ToString=&quot;&quot; or row.Item(&quot;ORGANIZATION&quot;).ToString.Contains(&quot;None&quot;)]" DisplayName="If - Organization Check" sap:VirtualizedContainerService.HintSize="258,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="264,390" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                <Sequence sap:VirtualizedContainerService.HintSize="296,358" sap2010:WorkflowViewState.IdRef="Sequence_37">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="Assign_14">
+                  <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_14">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Object">[row.Item("ORGANIZATION")]</OutArgument>
                     </Assign.To>
@@ -138,7 +143,7 @@
                       <InArgument x:TypeArguments="x:Object">["Not Working"]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="Assign_16">
+                  <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_16">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Object">[row.Item("POSITION")]</OutArgument>
                     </Assign.To>
@@ -146,7 +151,7 @@
                       <InArgument x:TypeArguments="x:Object">["Not Working"]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="Assign_17">
+                  <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_17">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[SuggestionWorkTxt]</OutArgument>
                     </Assign.To>
@@ -157,7 +162,7 @@
                 </Sequence>
               </If.Then>
             </If>
-            <Assign sap:VirtualizedContainerService.HintSize="502.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_22">
+            <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_22">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[getSalaray]</OutArgument>
               </Assign.To>
@@ -165,7 +170,7 @@
                 <InArgument x:TypeArguments="x:String">[row.Item("SALARY").ToString.Replace(" Lacs","")]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="502.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_23">
+            <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_23">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[getSalaray]</OutArgument>
               </Assign.To>
@@ -173,17 +178,17 @@
                 <InArgument x:TypeArguments="x:String">[If(IsNumeric(getSalaray.Trim),"0",getSalaray)]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="502.666666666667,415.333333333333" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="258,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="486,336.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="518,304.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_39">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[SalaryRangeTxt &lt;CInt(getSalaray)]" sap:VirtualizedContainerService.HintSize="464,212.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
+                  <If Condition="[SalaryRangeTxt &lt;CInt(getSalaray)]" sap:VirtualizedContainerService.HintSize="480,212.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
                     <If.Then>
-                      <Assign sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="Assign_21">
+                      <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_21">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:String">[SuggestionSalTxt]</OutArgument>
                         </Assign.To>
@@ -195,10 +200,22 @@
                   </If>
                 </Sequence>
               </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:CommentOut>
-            <If Condition="[row.Item(&quot;CANDIDATE_NAME&quot;).ToString = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="502.666666666667,216" sap2010:WorkflowViewState.IdRef="If_5">
+            <If Condition="[row.Item(&quot;CANDIDATE_NAME&quot;).ToString = &quot;&quot;]" DisplayName="If - Candidate Suggestion" sap:VirtualizedContainerService.HintSize="258,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Assign sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="Assign_20">
+                <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_20">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[SuggestionPremTxt]</OutArgument>
                   </Assign.To>
@@ -208,7 +225,7 @@
                 </Assign>
               </If.Then>
             </If>
-            <Assign sap:VirtualizedContainerService.HintSize="502.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_19">
+            <Assign sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_19">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[row.Item("SUGGESTIONS")]</OutArgument>
               </Assign.To>
@@ -216,7 +233,7 @@
                 <InArgument x:TypeArguments="x:Object">[SuggestionWorkTxt + SuggestionSalTxt + SuggestionPremTxt]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="502.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_15">
+            <Assign DisplayName="Value: KeySkill" sap:VirtualizedContainerService.HintSize="258,62" sap2010:WorkflowViewState.IdRef="Assign_15">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[row.Item("KEY_SKILLS")]</OutArgument>
               </Assign.To>
