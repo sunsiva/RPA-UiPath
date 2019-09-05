@@ -3,6 +3,8 @@
     <x:Property Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_Position" Type="InArgument(x:String)" />
+    <x:Property Name="in_TransactionData" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -71,6 +73,9 @@
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="sd:DataRow" x:Key="TransactionItem">[in_TransactionItem]</InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="TransactionNumber">[in_TransactionNumber]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Position">[in_Position]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_TransactionData">[in_TransactionData]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="336.666666666667,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[in_TransactionItem(0).ToString]" />
