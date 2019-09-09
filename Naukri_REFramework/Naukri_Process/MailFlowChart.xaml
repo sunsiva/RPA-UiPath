@@ -1,4 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Form1" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="262,204.666666666667" sap2010:WorkflowViewState.IdRef="Form1_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Form1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1087.33333333333,1333.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Form1_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -50,9 +58,9 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="WorkFlow For monitoring mail" sap:VirtualizedContainerService.HintSize="242,144.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence DisplayName="WorkFlow For monitoring mail" sap:VirtualizedContainerService.HintSize="1067.33333333333,1273.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
-      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mailAttachment" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="readMailMsg" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -65,12 +73,13 @@
       </Flowchart.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
           <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
           <av:PointCollection x:Key="ConnectorLocation">300,77.1666666666667 300,114.02</av:PointCollection>
           <x:Double x:Key="Width">991.333333333333</x:Double>
           <x:Double x:Key="Height">1145.3333333333335</x:Double>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
@@ -84,20 +93,20 @@
             <av:PointCollection x:Key="ConnectorLocation">300,183.353333333333 300,213.353333333333 299.975,213.353333333333 299.975,216.686666666667</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Read Mail" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Read Mail" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Default="sivaprakasam.sundaram@cai.io" Name="loginEmail" />
-            <Variable x:TypeArguments="x:String" Default="Mangalapuram@12345" Name="loginPwd" />
+            <Variable x:TypeArguments="x:String" Default="Sep_2019" Name="loginPwd" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:GetOutlookMailMessages Account="{x:Null}" Filter="{x:Null}" Messages="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Outlook Mail Messages" GetAttachements="False" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_3" MailFolder="Inbox" MarkAsRead="False" OnlyUnreadMessages="True" Top="30" />
+          <ui:GetOutlookMailMessages Account="{x:Null}" Filter="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Outlook Mail Messages" GetAttachements="False" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[readMailMsg]" OnlyUnreadMessages="True" Top="30" />
         </Sequence>
         <FlowStep.Next>
-          <FlowDecision x:Name="__ReferenceID2" Condition="[mailAttachment.Count=0]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+          <FlowDecision x:Name="__ReferenceID2" Condition="[readMailMsg.Count=0 and not Convert.ToBoolean(in_Config(&quot;IsEmailEnable&quot;))]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -131,7 +140,7 @@
               </FlowStep>
             </FlowDecision.True>
             <FlowDecision.False>
-              <FlowDecision x:Name="__ReferenceID4" Condition="[mailAttachment(0).Attachments.Count=0]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+              <FlowDecision x:Name="__ReferenceID4" Condition="[readMailMsg(0).Attachments.Count=0]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,7 +161,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">380,446.333333333334 380,476.333333333334 170,476.333333333334 170,441</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, No attachment found. Please attach your list of candidate's profiles that you required.&quot;+Environment.NewLine+&quot; -Myla.&quot;]" DisplayName="Send Mail For No Attachment" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject]" To="[mailAttachment(0).From.ToString]">
+                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, No attachment found. Please attach your list of candidate's profiles that you required.&quot;+Environment.NewLine+&quot; -Myla.&quot;]" DisplayName="Send Mail For No Attachment" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="False" IsDraft="False" Subject="[readMailMsg(0).Subject]" To="[readMailMsg(0).From.ToString]">
                       <ui:SendOutlookMail.Files>
                         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                       </ui:SendOutlookMail.Files>
@@ -168,7 +177,7 @@
                   </FlowStep>
                 </FlowDecision.True>
                 <FlowDecision.False>
-                  <FlowStep x:Name="__ReferenceID7">
+                  <FlowStep x:Name="__ReferenceID6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">511,389</av:Point>
@@ -181,7 +190,7 @@
                         <OutArgument x:TypeArguments="x:String">[toEmailId]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[mailAttachment(0).From.ToString+";"+mailAttachment(0).CC.ToString+";"+mailAttachment(0).To.ToString]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[readMailMsg(0).CC.ToString+";"+readMailMsg(0).Sender.ToString]</InArgument>
                       </Assign.Value>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -195,25 +204,26 @@
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <av:Point x:Key="ShapeLocation">550,493.666666666667</av:Point>
                             <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                            <av:PointCollection x:Key="ConnectorLocation">650,546.333333333333 650,593.666666666667</av:PointCollection>
+                            <av:PointCollection x:Key="ConnectorLocation">650,546.333333333334 650,576.333333333334 652,576.333333333334 652,593.666666666667</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" FolderPath="D:\source\RPA\UiPath\DataScrap\Results" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_2" Message="[mailAttachment(0)]" />
+                        <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" FolderPath="Result" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_2" Message="[readMailMsg(0)]" />
                         <FlowStep.Next>
-                          <FlowStep x:Name="__ReferenceID6">
+                          <FlowStep x:Name="__ReferenceID7">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <av:Point x:Key="ShapeLocation">550,593.666666666667</av:Point>
+                                <av:Point x:Key="ShapeLocation">552,593.666666666667</av:Point>
                                 <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, We have receieved your request, its in progress. We will revert you approximately in less than 5 mins.&quot;+Environment.NewLine+&quot; - Myla.&quot;]" DisplayName="Send Ack. Mail" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" IsBodyHtml="False" IsDraft="False" Subject="[mailAttachment(0).Subject +&quot; - Acknowledgement&quot;]" To="[toEmailId]">
+                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, Your request is in progress. We will revert you as soon as it complete.&quot;+Environment.NewLine+&quot; - Myla.&quot;+ vbCrLf+vbCrLf + &quot;From:&quot; + readMailMsg(0).Sender.ToString + vbCrLf+&quot;To:&quot;+readMailMsg(0).To.ToString+ vbCrLf+&quot;Subject: Re:&quot;+readMailMsg(0).Subject+ vbCrLf +vbCrLf+ readMailMsg(0).Body]" DisplayName="Send Outlook Mail Ack" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" IsBodyHtml="False" IsDraft="False" Subject="[readMailMsg(0).Subject]" To="[toEmailId]">
                               <ui:SendOutlookMail.Files>
                                 <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                               </ui:SendOutlookMail.Files>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:SendOutlookMail>

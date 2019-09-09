@@ -89,7 +89,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:SendHotkey Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBefore="100" DelayBetweenKeys="150" DelayMS="100" DisplayName="Key - Ctrl+F" EmptyField="False" sap:VirtualizedContainerService.HintSize="742.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+              <ui:SendHotkey DelayBefore="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBetweenKeys="150" DelayMS="100" DisplayName="Key - Ctrl+F" EmptyField="False" sap:VirtualizedContainerService.HintSize="742.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
                 <ui:SendHotkey.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                 </ui:SendHotkey.Target>
@@ -111,7 +111,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:TypeInto>
-              <ui:SendHotkey DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBefore="300" DisplayName="Key - Esc Find Window" EmptyField="False" sap:VirtualizedContainerService.HintSize="734.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="esc" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBefore="300" DisplayName="Key - Esc Find Window" EmptyField="False" sap:VirtualizedContainerService.HintSize="742.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="esc" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
                 <ui:SendHotkey.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                 </ui:SendHotkey.Target>
@@ -122,7 +122,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:SendHotkey>
-              <ui:SendHotkey DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBefore="200" DelayMS="500" DisplayName="Key - Enter in Find Window" EmptyField="False" sap:VirtualizedContainerService.HintSize="734.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBefore="200" DelayMS="500" DisplayName="Key - Enter in Find Window" EmptyField="False" sap:VirtualizedContainerService.HintSize="742.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
                 <ui:SendHotkey.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                 </ui:SendHotkey.Target>
