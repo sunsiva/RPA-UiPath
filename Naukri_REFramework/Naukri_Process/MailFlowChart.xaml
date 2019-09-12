@@ -161,7 +161,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">380,446.333333333334 380,476.333333333334 170,476.333333333334 170,441</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, No attachment found. Please attach your list of candidate's profiles that you required.&quot;+Environment.NewLine+&quot; -Myla.&quot;]" DisplayName="Send Mail For No Attachment" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="False" IsDraft="False" Subject="[readMailMsg(0).Subject]" To="[readMailMsg(0).From.ToString]">
+                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;|| No Attachment Found || &quot;+Environment.NewLine+&quot; -Myla.&quot;]" DisplayName="Send Mail For No Attachment" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="False" IsDraft="False" Subject="[readMailMsg(0).Subject]" To="[readMailMsg(0).From.ToString]">
                       <ui:SendOutlookMail.Files>
                         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                       </ui:SendOutlookMail.Files>
@@ -216,7 +216,7 @@
                                 <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi, Your request is in progress. We will revert you as soon as it complete.&quot;+Environment.NewLine+&quot; - Myla.&quot;+ vbCrLf+vbCrLf + &quot;From:&quot; + readMailMsg(0).Sender.ToString + vbCrLf+&quot;To:&quot;+readMailMsg(0).To.ToString+ vbCrLf+&quot;Subject: Re:&quot;+readMailMsg(0).Subject+ vbCrLf +vbCrLf+ readMailMsg(0).Body]" DisplayName="Send Outlook Mail Ack" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" IsBodyHtml="False" IsDraft="False" Subject="[readMailMsg(0).Subject]" To="[toEmailId]">
+                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot; || Request In-Progress || Will Revert As Soon As It Complete || &quot;+Environment.NewLine+&quot; - Myla.&quot;+ vbCrLf+vbCrLf + &quot;From:&quot; + readMailMsg(0).Sender.ToString + vbCrLf+&quot;To:&quot;+readMailMsg(0).To.ToString+ vbCrLf+ &quot; Sent: &quot;+ readMailMsg(0).Headers(&quot;Date&quot;) + vbCrLf + &quot;Subject: Re:&quot;+readMailMsg(0).Subject+ vbCrLf +vbCrLf+ readMailMsg(0).Body]" DisplayName="Send Outlook Mail Ack" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" IsBodyHtml="False" IsDraft="False" Subject="[readMailMsg(0).Subject]" To="[toEmailId]">
                               <ui:SendOutlookMail.Files>
                                 <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                               </ui:SendOutlookMail.Files>
