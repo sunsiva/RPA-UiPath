@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ScrapTheData" this:ScrapTheData.in_NoOfResults="15" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ScrapTheData" this:ScrapTheData.in_NoOfResults="15" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_TransactionData" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_NoOfResults" Type="InArgument(x:String)" />
@@ -8,10 +8,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>538,1881.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>538,2076</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ScrapTheData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="22">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -34,10 +34,10 @@
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
       <x:String>System.Xml.Serialization</x:String>
-    </sco:Collection>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -58,15 +58,15 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-    </sco:Collection>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ScrapTheData" sap:VirtualizedContainerService.HintSize="518,1821.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ScrapTheData" sap:VirtualizedContainerService.HintSize="518,2016" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="476,1729.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="476,1924" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
         <Variable x:TypeArguments="x:String" Name="setProfilePath" />
@@ -76,18 +76,43 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Firefox" DisplayName="Attach Browser 'Resdex Se Page'" sap:VirtualizedContainerService.HintSize="434,501.333333333333" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="645643677aebc8a3ce49848f52f0d4d8" Selector="&lt;html app='firefox.exe' title='Resdex - Search Result Page' /&gt;">
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Firefox" DisplayName="Attach Browser 'Resdex Se Page'" sap:VirtualizedContainerService.HintSize="434,696" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="645643677aebc8a3ce49848f52f0d4d8" Selector="&lt;html app='firefox.exe' title='Resdex - Search Result Page' /&gt;">
         <ui:BrowserScope.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,355.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,550" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="noOfRecordFound" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
+              <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get No Of Search Records" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                <ui:GetValue.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="75f24fdac44856eaca04ef2b7e191d38" Selector="&lt;webctrl parentid='sInfo' tag='SPAN' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:GetValue.Target>
+                <ui:GetValue.Value>
+                  <OutArgument x:TypeArguments="x:String">[noOfRecordFound]</OutArgument>
+                </ui:GetValue.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:GetValue>
+              <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[in_NoOfResults]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[if((Convert.ToInt32(noOfRecordFound) &gt;Convert.ToInt32(in_NoOfResults)),in_NoOfResults.ToString,noOfRecordFound.ToString)]</InArgument>
+                </Assign.Value>
+              </Assign>
               <ui:ExtractData ContinueOnError="True" DataTable="[in_TransactionData]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  tupCont'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;/row&gt;&lt;column exact='1' name='CANDIDATE_NAME' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='clFx' idx='1'/&gt;&lt;webctrl tag='a' class='userName name' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='EXPERIENCE' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='mtxt' idx='1'/&gt;&lt;webctrl tag='span' class='exp' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='POSITION' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='desc currInfo' text='at' idx='1'/&gt;&lt;webctrl tag='a' class='designation dashTxt cDesig' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='ORGANIZATION' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='desc currInfo' text='at' idx='1'/&gt;&lt;webctrl tag='a' class='employer dashTxt cOrg' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='SALARY' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='mtxt' idx='1'/&gt;&lt;webctrl tag='span' class='sal ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='CURRENT_LOCATION' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='mtxt' idx='1'/&gt;&lt;webctrl tag='span' class='loc' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='PREF_LOCATION' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='desc locInfo' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='KEY_SKILLS' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='tupCmtWrap' idx='1'/&gt;&lt;webctrl tag='div' class='tupData' idx='1'/&gt;&lt;webctrl tag='div' class='tupLeft' idx='1'/&gt;&lt;webctrl tag='div' class='desc prefSkill hKwd kSklsInfo' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="[Convert.ToInt32(in_NoOfResults)]" NextLinkSelector="&lt;webctrl idx='1' name='pageNo' tag='BUTTON' /&gt;">
                 <ui:ExtractData.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c3d40d9fce699928af60f1f4e2e8fee4" Selector="&lt;webctrl id='tupCont' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
