@@ -359,7 +359,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.Condition>[SystemError IsNot Nothing]</Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Read Config, Init Applications" DisplayName="Init" sap:VirtualizedContainerService.HintSize="254,90" sap2010:WorkflowViewState.IdRef="State_2">
+                    <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Read Config, Init Applications" DisplayName="Init" sap:VirtualizedContainerService.HintSize="649.333333333333,2732.66666666667" sap2010:WorkflowViewState.IdRef="State_2">
                       <State.Entry>
                         <TryCatch DisplayName="Catch intialization exceptions" sap:VirtualizedContainerService.HintSize="602.666666666667,2305.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                           <sap:WorkflowViewStateService.ViewState>
@@ -481,6 +481,7 @@
                                 <ui:InvokeWorkflowFile.Arguments>
                                   <OutArgument x:TypeArguments="x:String" x:Key="NoOfDataItem_get">[NoOfDataItem]</OutArgument>
                                   <OutArgument x:TypeArguments="x:String" x:Key="Position_get">[Position_get]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="statusMsg" />
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
                               <If Condition="[NoOfDataItem Is Nothing]" DisplayName="If NoDataItem Close App" sap:VirtualizedContainerService.HintSize="522,561.333333333333" sap2010:WorkflowViewState.IdRef="If_10">

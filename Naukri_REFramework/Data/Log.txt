@@ -126,3 +126,17 @@ Closing execution for No input criteria exist
 Before searching the input criteria || Read Excel Input for ServiceNow Developer
 =================09/26/2019 15:57:38================
 Before searching the input criteria || Read Excel Input for ServiceNow Developer
+=================10/01/2019 16:39:51================
+Before searching the input criteria || Read Excel Input for DotNet Developer
+=================10/21/2019 20:25:49================
+Before searching the input criteria || Read Excel Input for Sitecore
+=================10/23/2019 17:52:39================
+Before searching the input criteria || Read Excel Input for Sitecore
+=================10/23/2019 18:09:07================
+Before searching the input criteria || Read Excel Input for Window Server Administrator
+=================10/24/2019 12:56:16================
+Before searching the input criteria || Read Excel Input for Window Server Administrator
+=================10/24/2019 13:05:45================
+Before searching the input criteria || Read Excel Input for Window Server Administrator
+=================10/24/2019 13:14:21================
+Before searching the input criteria || Read Excel Input for Window Server Administrator
